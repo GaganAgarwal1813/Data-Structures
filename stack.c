@@ -1,3 +1,10 @@
+/*
+Implimentation of stack.
+1. PUSH
+2. POP
+3. isempty
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 

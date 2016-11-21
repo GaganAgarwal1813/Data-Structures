@@ -1,5 +1,18 @@
 // Header Files
 
+/*
+This program contains linked list and following operations. 
+
+1. Insert Node
+2. Print Linked List
+3. Delete 1st Element
+4. Reverse the liked list. 
+5. Find the length of liked list.
+*/
+
+
+// Header Files
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

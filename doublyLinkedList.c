@@ -1,3 +1,12 @@
+/*
+Implimentation of doubly linked list with following functions. 
+1. Insert
+2. Print
+3. Delete 1st
+4. Revese
+*/
+
+
 // Header Files
 
 #include <stdio.h>

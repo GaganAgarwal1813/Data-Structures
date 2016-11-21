@@ -1,3 +1,8 @@
+/*
+This program used to check whether the paranthesis are 
+complete or not.
+*/
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

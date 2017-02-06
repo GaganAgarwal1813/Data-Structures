@@ -45,7 +45,8 @@ int dequeue(struct QueueNode* queue)
 	
 	
 	if(queue->tail >=MAX_QUEUE_SIZE)
-		queue->tail=0;
+		queue->tail=0
+	return data;
 }
 
 int getFirst(struct QueueNode* queue)

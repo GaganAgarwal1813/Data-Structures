@@ -2,6 +2,9 @@
 This program contains various BST travesal methods. For this code
 we need BST (To apply travesal obviously!!) and queue (for level
 order traversal). I am taking code from my previous implementations.
+
+1. Level order Traversal (Breath first, requires queue to keep track of nodes)
+2. Preorder Traversal (Depth first)
 */
 
 
@@ -115,6 +118,20 @@ void levelOrderTraversal(struct node* root)
 		}
 }
 
+// Preorder Traversal..
+
+void preorderTraversal(struct node* root)
+{
+	if (root == NULL)
+		return;
+
+	printf("%d ",root->data);
+
+	preorderTraversal(root->left);
+	preorderTraversal(root->right);
+
+}
+
 //Testing code starts from here...
 
 void main()
@@ -130,5 +147,7 @@ void main()
 	Treeroot = insert(Treeroot,35);
 	Treeroot = insert(Treeroot,20);
 	levelOrderTraversal(Treeroot);
+	printf("\n");
+	preorderTraversal(Treeroot);
 
 }

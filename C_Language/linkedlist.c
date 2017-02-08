@@ -63,11 +63,13 @@ void printList ()
 void deleteFirst () 
 {
 
+	struct node* temp = head;
 	if (head->next == NULL) {
 		printf("Linked List is Empty.\n");
 	}
 	else {
-		head = head->next;
+		head = temp->next;
+		free(temp);
 	}
 
 }
@@ -147,6 +149,7 @@ void main()
 	insert(4);
 	insert(67);
 	insert(2443);
+	deleteFirst();
 	printList();
 	
 

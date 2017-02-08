@@ -28,6 +28,7 @@ void push(int data)
 int pop()
 {
     int data;
+    struct node* temp=head;
     if(head==NULL)
     {
         printf("Stack is Empty.");
@@ -38,6 +39,7 @@ int pop()
         data = head->data;
         head = head->next;
     }
+    free(temp);
     return data;
 }
 

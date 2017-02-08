@@ -1,4 +1,8 @@
 /*
+Double Linked List Implimentation in C++.
+*/
+
+/*
 Implimentation of doubly linked list with following functions. 
 1. Insert
 2. Print
@@ -9,28 +13,38 @@ Implimentation of doubly linked list with following functions.
 
 // Header Files
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <stdbool.h>
+#include <iostream>
+using namespace std;
 
 // Node Definition
+class doublyLinkedList
+{
+	public:
+		struct node 
+		{
+			int data;
+			struct node *next;
+			struct node *prev;	
+		};
+		// Defining current and head of the Linked List
 
-struct node {
-	int data;
-	struct node *next;
-	struct node *prev;	
+		struct node *head = NULL;
+		struct node *tail = NULL;
+
+		//Declaring functions..
+
+		void insert(int data);
+		void printList();
+		void deleteFirst();
+		void reverse();
 };
 
-// Defining current and head of the Linked List
 
-struct node *head = NULL;
-struct node *tail = NULL;
-
-void insert (int data) {
+void doublyLinkedList :: insert (int data) 
+{
 
 	// Creates new Node
-	struct node *NewNode = (struct node*) malloc(sizeof(struct node*));
+	struct node *NewNode = new node;
 	// Stores data into node
 	NewNode->data = data;
 	//points previos as new node
@@ -46,36 +60,33 @@ void insert (int data) {
 
 // Print Data stored in Linked List
 
-void printList () {
+void doublyLinkedList :: printList () {
 
 	struct node *current = NULL;
 	current = head;
 	while (current != NULL) {
-		printf("%d ",current->data);
+		cout<<current->data<<endl;
 		current = current->next;
 	}
-	printf("\n");
 }
 
 // Delete The first node of the linked list.
 
-void deleteFirst () {
+void doublyLinkedList :: deleteFirst () {
 
 	struct node* temp = head;
 	if (head->next == NULL) {
-		printf("Linked List is Empty.\n");
+		cout << "Linked List is Empty.\n";
 	}
 	else {
-		head = head->next;
+		head = temp->next;
 	}
-
-	free(temp);
-
+	delete temp;
 }
 
 // Reverse Linked List.
 
-void reverse () {
+void doublyLinkedList :: reverse () {
 	struct node* current = head;
 	struct node* previous = NULL;
 	struct node* next;
@@ -92,15 +103,19 @@ void reverse () {
 
 // Main Function to do various operations on Linked List.
 
-void main() 
+int main() 
 {
-	insert(1);
-	insert(24);
-	insert(3);
-	insert(45);
-	printList();
-	deleteFirst();
-	reverse();
-	printList();
+	doublyLinkedList dl;
 
+	dl.insert(1);
+	dl.insert(24);
+	dl.insert(3);
+	dl.insert(45);
+	dl.printList();
+	dl.deleteFirst();
+	dl.reverse();
+	dl.printList();
+
+
+	return 1;
 }

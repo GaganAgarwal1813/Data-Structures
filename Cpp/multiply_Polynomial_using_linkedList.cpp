@@ -49,20 +49,14 @@ struct node
 class LinkedList
 {
 	public:
-		struct node* createLinkedList();
-		
-
 		struct node *head = NULL;
+		void insert(int data);
+		void printList();
+		int ListLen();		
 
 };
 
-struct node* LinkedList :: createLinkedList()
-{
-	struct node *NewNode = new node;
-	return NewNode;
-}
-
-void insert (int data) 
+void LinkedList :: insert (int data) 
 {
 	struct node *NewNode = new node;
 	NewNode->data = data;
@@ -70,51 +64,10 @@ void insert (int data)
 	head = NewNode;
 }
 
-void printList () 
-{
-	struct node *current = NULL;
-	current = head;
-	while (current != NULL) 
-	{
-		cout << current->data << endl;
-		current = current->next;
-		}
-	}
-
-void deleteFirst () 
-{
-
-	struct node* temp = head;
-	if (head->next == NULL) 
-	{
-		cout<<"Linked List is Empty.\n";
-	}
-	else 
-	{
-		head = temp->next;
-		delete temp;
-	}
-}
-
-void reverse () 
+int LinkedList :: ListLen() 
 {
 	struct node* current = head;
-	struct node* previous = NULL;
-	struct node* next;
-	while (current != NULL) 
-	{
-		next = current->next;
-		current->next = previous;
-		previous = current;
-		current = next;
-	}
-	head = previous;
-}
-
-int len() 
-{
-	struct node* current = head;
-	int l;
+	int l=0;
 	while (current !=NULL)
 	{
 		l++;
@@ -123,28 +76,73 @@ int len()
 	return l;
 }
 
-void delnth(int no)
+void printList (struct node* head) 
 {
-			
-	struct node* current = head;
-	struct node* temp;
-	int i=1,l;
-	l = len();
-	if (l < no)
+	struct node *current = NULL;
+	current = head;
+
+	if (head == NULL)
+		cout << "List is empty." << endl;
+	while (current != NULL) 
 	{
-		cout << "List is smaller than the number.\n";
-		return;
-	}
-	if (l == no)
-	{
-		deleteFirst();
-		return;
-	}
-	while (i < no)
-	{
+		cout << current->data << endl;
 		current = current->next;
-		i++;
 	}
-	temp = current->next->next;
-	current->next = temp;
+}
+
+struct node* poly_multi(struct node* list1,struct node* list2,int l1,int l2)
+{
+	
+	LinkedList mul;
+	int pointer = 0;
+	struct node* p,*ll1,*ll2;
+	int n = (l1+l2)-1;
+	for (int i=0;i<n;i++)
+		mul.insert(0);
+
+	ll1 = list1;
+	ll2 = list2;
+
+	for (int i=l1;i>0;i--)
+	{
+		p=mul.head;
+		ll2 = list2;
+		for(int j=pointer;j>0;j--)
+			p=p->next;
+
+
+		for(int j=l2;j>0;j--)
+		{
+			int c;
+			
+			c = ll1->data * ll2->data;
+			p->data = p->data + c;
+			p=p->next;
+			ll2=ll2->next;
+		}
+
+		pointer++;
+		ll1=ll1->next;
+	}
+	return mul.head;
+}
+
+
+int main()
+{
+	LinkedList l1,l2;
+	struct node* mul;
+	l1.insert(2);
+	l1.insert(3);
+	l1.insert(0);
+	l1.insert(1);
+
+	l2.insert(4);
+	l2.insert(0);
+	l2.insert(2);
+	
+	mul = poly_multi(l1.head,l2.head,l1.ListLen(),l2.ListLen());
+	printList(mul);
+
+	return 1;
 }

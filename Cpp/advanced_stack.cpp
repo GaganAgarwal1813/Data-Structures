@@ -39,11 +39,20 @@ class advanced_stack
 
 vector<int>* advanced_stack :: create_newStack()
 {
-	vector<int> *stack = new vector<int>(10);
-	cout << "new stack created" << endl;
-	stackRef++;
-	stack_map.insert({stackRef,stack});
-
+	vector<int> *stack;
+	if(stack_map.find(stackRef) == stack_map.end())
+	{
+		stack = new vector<int>(10);
+		cout << "new stack created" << endl;
+		stackRef++;
+		stack_map.insert({stackRef,stack});
+	}
+	else
+	{
+		cout << "using from prevous stack." << endl; 
+		stack = stack_map[stackRef];
+		stackRef++;
+	}
 	return stack;
 }
 
@@ -61,7 +70,10 @@ void advanced_stack :: push(int data)
 int advanced_stack :: pop()
 {
 	if(vptr->back() == NULL)
+	{
+		cout << "To the previos stack" << endl; 
 		vptr = stack_map[--stackRef];
+	}
 	
 	cout << stackRef << endl; 
 
@@ -78,13 +90,22 @@ int main()
 {
 	advanced_stack s;
 	s.push(1);
-	s.push(1);
+	s.push(2);
 	s.push(5);
-	s.push(2);
-	s.push(2);
-	s.push(2);
-	s.push(2);
-	//s.pop();
+	s.push(3);
+	s.push(4);
+	s.push(9);
+	s.push(6);
+	s.push(7);
+	s.push(8);
+	s.push(10);
+
+	s.pop();
+	s.pop();
+	s.pop();
+	s.pop();
+	s.pop();
+
 	cout << s.pop() << endl;
 	return 0;
 }

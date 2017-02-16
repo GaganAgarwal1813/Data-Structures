@@ -144,8 +144,8 @@ int main()
 	l.insert(4);
 	l.insert(67);
 	l.insert(2443);
-	l.deleteFirst();
-	l.delnth(2);
+	//l.deleteFirst();
+	//l.delnth(2);
 	l.printList();
 	
 	return 1;
